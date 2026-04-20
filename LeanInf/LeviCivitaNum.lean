@@ -131,7 +131,7 @@ instance : Neg Polynomial' where neg p := ⟨p.coeffs.map (fun _ coeff => -coeff
 #eval Polynomial'.mk #{0 ↦ 1, 1 ↦ 2} + Polynomial'.mk #{-1 ↦ 1, 1 ↦ 2}
 
 /-- The empty polynomial, that is, the constant `0`. -/
-def empty : Polynomial' := ⟨.empty⟩
+def empty : Polynomial' := ⟨∅⟩
 
 /--  TODO: bad idea? Any real number can be represented as a polynomial with a single term. By the way, this also uses that 0^0 is 1 (since the constant term is x^0) -/
 instance : Coe Coeff Polynomial' where
@@ -165,7 +165,7 @@ def signum (x: Term) : Int :=
 
 /-- Create a `Polynomial'` from a list of tuples -/
 def ofList (l : List Term) : Polynomial' := Id.run do
-  let mut result := .empty
+  let mut result : CoeffMap := ∅
   for term in l do
     let existingCoeff := result.getD term.exp 0
     result := result.insert term.exp (existingCoeff + term.coeff)
@@ -348,8 +348,8 @@ instance : OfScientific LeviCivitaNum where
     std := .ofScientific mantissa exponentSign decimalExponent
   }
 
-#eval (0 : LeviCivitaNum)
-#eval (2.2: LeviCivitaNum)
+#eval! (0 : LeviCivitaNum)
+#eval! (2.2: LeviCivitaNum)
 
 /-- Subtraction via addition and negation -/
 instance : Sub LeviCivitaNum where

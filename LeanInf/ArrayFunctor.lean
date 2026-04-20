@@ -1,5 +1,5 @@
 import Mathlib
-import LeanCopilot
+-- LeanCopilot removed: incompatible with v4.29.0
 -- /-- `α ≃ β` is the type of functions from `α → β` with a two-sided inverse. -/
 -- structure Equiv (α : Sort*) (β : Sort _) where
 --   protected toFun : α → β
